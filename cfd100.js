@@ -39,25 +39,25 @@ const JD_API_HOST = 'https://car-member.jd.com/api/';
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
-    for (let i = 0; i < cookiesArr.length; i++) {
-      if (cookiesArr[i]) {
-        cookie = cookiesArr[i];
-        $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
-        $.index = i + 1;
-        console.log(`*********京东账号${$.index} ${$.UserName}*********`)
-        $.isLogin = true;
-        $.nickName = '';
-        message = '';
-        await jdCar();
-      }
+  for (let i = 0; i < cookiesArr.length; i++) {
+    if (cookiesArr[i]) {
+      cookie = cookiesArr[i];
+      $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+      $.index = i + 1;
+      console.log(`*********京东账号${$.index} ${$.UserName}*********`)
+      $.isLogin = true;
+      $.nickName = '';
+      message = '';
+      await jdCar();
     }
+  }
 })()
-  .catch((e) => {
-    $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-  })
-  .finally(() => {
-    $.done();
-  })
+    .catch((e) => {
+      $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+    })
+    .finally(() => {
+      $.done();
+    })
 
 async function jdCar() {
   await exchange()
@@ -73,7 +73,7 @@ function showMsg() {
 function exchange() {
   var options = {
     'method': 'GET',
-    'url': 'https://m.jingxi.com/jxbfd/user/ExchangePearlHb?__t=1634229143130&strZone=jxbfd&dwLvl=4&dwIsRandHb=0&ddwVirHb=500&strPoolName=anhjZmQyX2V4Y2hhbmdlX2hjaGJfMjAyMTEwMTM%3D&dwExchangeType=0&_stk=__t%2CddwVirHb%2CdwExchangeType%2CdwIsRandHb%2CdwLvl%2CstrPoolName%2CstrZone&_ste=1&h5st=20211015003223130%3B8740728963479162%3B10032%3Btk01w8d6d1b6530nwrODpRqQ9mnLoYu7LqJ4I6U7UM9LU9z13liQP%2FCa7%2FYt2KyT1p9gccGfWSuN7he9HCYVnEg6qBbl%3Bae88c077301b5a4cbbfeaadd8a24e09c01abdc3675e96d16a9352c88e7c4be23&_=1634229143137&sceneval=2&g_login_type=1&callback=jsonpCBKF&g_ty=ls',
+    'url': 'https://m.jingxi.com/jxbfd/user/ExchangePearlHb?__t=1637892057446&strZone=jxbfd&dwLvl=3&dwIsRandHb=0&ddwVirHb=500&strPoolName=anhjZmQyX2V4Y2hhbmdlX2hjaGJfMjAyMTExMTk%3D&dwExchangeType=0&_stk=__t%2CddwVirHb%2CdwExchangeType%2CdwIsRandHb%2CdwLvl%2CstrPoolName%2CstrZone&_ste=1&h5st=20211126100057447%3B3622990584622162%3B10032%3Btk01w607f1a7030n%2BAD4Zl5%2BkkdEltiLwLP8KnBdthSQj41H9iL92Y5QaK1T2V%2FRfz%2FZA9BNGj6uON%2FMaXUltEB5l4ou%3B8bbb86757330414c1e6938ca09133eb4bf7eeec0ca0e78ca135f6bbd8ed8ee58&_=1637892057456&sceneval=2&g_login_type=1&callback=jsonpCBKM&g_ty=ls',
     'headers': {
       'Host': 'm.jingxi.com',
       'user-agent': 'jdpingou;android;5.6.0;10;8b4c6a79b1795376;network/mobile;model/NOH-AN00;appBuild/18771;partner/huawei01;;session/175;aid/8b4c6a79b1795376;oaid/00000000-0000-0000-0000-000000000000;pap/JA2019_3111789;brand/HUAWEI;eu/5336261393261353;fv/6623834316633613;Mozilla/5.0 (Linux; Android 10; NOH-AN00 Build/HUAWEINOH-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36',

@@ -73,7 +73,7 @@ function showMsg() {
 function exchange() {
   var options = {
     'method': 'GET',
-    'url': 'https://m.jingxi.com/jxbfd/user/ExchangePearlHb?__t=1637892057446&strZone=jxbfd&dwLvl=3&dwIsRandHb=0&ddwVirHb=500&strPoolName=anhjZmQyX2V4Y2hhbmdlX2hjaGJfMjAyMTExMTk%3D&dwExchangeType=0&_stk=__t%2CddwVirHb%2CdwExchangeType%2CdwIsRandHb%2CdwLvl%2CstrPoolName%2CstrZone&_ste=1&h5st=20211126100057447%3B3622990584622162%3B10032%3Btk01w607f1a7030n%2BAD4Zl5%2BkkdEltiLwLP8KnBdthSQj41H9iL92Y5QaK1T2V%2FRfz%2FZA9BNGj6uON%2FMaXUltEB5l4ou%3B8bbb86757330414c1e6938ca09133eb4bf7eeec0ca0e78ca135f6bbd8ed8ee58&_=1637892057456&sceneval=2&g_login_type=1&callback=jsonpCBKM&g_ty=ls',
+    'url': 'https://m.jingxi.com/jxbfd/user/ExchangePearlHb?__t=1637910003199&strZone=jxbfd&dwLvl=2&dwIsRandHb=0&ddwVirHb=1000&strPoolName=anhjZmQyX2V4Y2hhbmdlX2hjaGJfMjAyMTExMTk%3D&dwExchangeType=0&_stk=__t%2CddwVirHb%2CdwExchangeType%2CdwIsRandHb%2CdwLvl%2CstrPoolName%2CstrZone&_ste=1&h5st=20211126150003199%3B4413417406299162%3B10032%3Btk01wb9af1c8230n1dxtVuofgVQ%2FVdHqaKx3C2Ur%2Fj2REOEJxijotali4h%2BMi8NzsZ1XzNc%2B9%2FSVZV%2BVwMitVlMwvCv0%3B25bd3f49ca477c045ede9bed06ce8cbd4453429b07bc015ebf0e0d094c033f7c&_=1637910003201&sceneval=2&g_login_type=1&callback=jsonpCBKP&g_ty=ls',
     'headers': {
       'Host': 'm.jingxi.com',
       'user-agent': 'jdpingou;android;5.6.0;10;8b4c6a79b1795376;network/mobile;model/NOH-AN00;appBuild/18771;partner/huawei01;;session/175;aid/8b4c6a79b1795376;oaid/00000000-0000-0000-0000-000000000000;pap/JA2019_3111789;brand/HUAWEI;eu/5336261393261353;fv/6623834316633613;Mozilla/5.0 (Linux; Android 10; NOH-AN00 Build/HUAWEINOH-AN00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.106 Mobile Safari/537.36',

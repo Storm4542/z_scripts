@@ -91,101 +91,12 @@ if ($.isNode()) {
         $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
         $.canHelp = true
         UA = UAInfo[$.UserName]
-        if ($.newShareCodes && $.newShareCodes.length) {
-            console.log(`\n开始互助\n`);
-            for (let j = 0; j < $.newShareCodes.length && $.canHelp; j++) {
-                console.log(`账号${$.UserName} 去助力 ${$.newShareCodes[j]}`)
-                $.delcode = false
-                await helpByStage($.newShareCodes[j])
-                await $.wait(2000)
-                if ($.delcode) {
-                    $.newShareCodes.splice(j, 1)
-                    j--
-                    continue
-                }
-            }
-        } else {
-            break
-        }
     }
     await showMsg();
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done());
 
-
-// 助力
-function helpByStage(shareCodes) {
-    return new Promise((resolve) => {
-        $.get(taskUrl(`story/helpbystage`, `strShareId=${shareCodes}`), (err, resp, data) => {
-            try {
-                if (err) {
-                    console.log(`${JSON.stringify(err)}`)
-                    console.log(`${$.name} helpbystage API请求失败，请检查网路重试`)
-                } else {
-                    data = JSON.parse(data.replace(/\n/g, "").match(new RegExp(/jsonpCBK.?\((.*);*\)/))[1]);
-                    if (data.iRet === 0 || data.sErrMsg === 'success') {
-                        console.log(`助力成功：获得${data.Data.GuestPrizeInfo.strPrizeName}`)
-                    } else if (data.iRet === 2235 || data.sErrMsg === '今日助力次数达到上限，明天再来帮忙吧~') {
-                        console.log(`助力失败：${data.sErrMsg}`)
-                        $.canHelp = false
-                    } else if (data.iRet === 2232 || data.sErrMsg === '分享链接已过期') {
-                        console.log(`助力失败：${data.sErrMsg}`)
-                        $.delcode = true
-                    } else if (data.iRet === 9999 || data.sErrMsg === '您还没有登录，请先登录哦~') {
-                        console.log(`助力失败：${data.sErrMsg}`)
-                        $.canHelp = false
-                    } else if (data.iRet === 2229 || data.sErrMsg === '助力失败啦~') {
-                        console.log(`助力失败：您的账号已黑`)
-                        $.canHelp = false
-                    } else if (data.iRet === 2190 || data.sErrMsg === '达到助力上限') {
-                        console.log(`助力失败：${data.sErrMsg}`)
-                        $.delcode = true
-                    } else {
-                        console.log(`助力失败：${data.sErrMsg}`)
-                    }
-                }
-            } catch (e) {
-                $.logErr(e, resp);
-            } finally {
-                resolve(data);
-            }
-        })
-    })
-}
-
-function getAuthorShareCode(url) {
-    return new Promise(async resolve => {
-        const options = {
-            url: `${url}?${new Date()}`, "timeout": 10000, headers: {
-                "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
-            }
-        };
-        if ($.isNode() && process.env.TG_PROXY_HOST && process.env.TG_PROXY_PORT) {
-            const tunnel = require("tunnel");
-            const agent = {
-                https: tunnel.httpsOverHttp({
-                    proxy: {
-                        host: process.env.TG_PROXY_HOST,
-                        port: process.env.TG_PROXY_PORT * 1
-                    }
-                })
-            }
-            Object.assign(options, { agent })
-        }
-        $.get(options, async (err, resp, data) => {
-            try {
-                resolve(JSON.parse(data))
-            } catch (e) {
-                // $.logErr(e, resp)
-            } finally {
-                resolve();
-            }
-        })
-        await $.wait(10000)
-        resolve();
-    })
-}
 
 // 获取用户信息
 function getUserInfo(showInvite = true) {
@@ -210,10 +121,6 @@ function getUserInfo(showInvite = true) {
                         Business = {},
                         XbStatus = {}
                     } = data;
-                    if (showInvite) {
-                        console.log(`获取用户信息：${sErrMsg}\n${$.showLog ? data : ""}`);
-                        console.log(`\n当前等级:${dwLandLvl},金币:${ddwCoinBalance},财富值:${ddwRichBalance},连续营业天数:${Business.dwBussDayNum},离线收益:${Business.ddwCoin}\n`)
-                    }
                     if (showInvite && strMyShareId) {
                         console.log(`财富岛好友互助码每次运行都变化,旧的当天有效`);
                         console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${strMyShareId}`);

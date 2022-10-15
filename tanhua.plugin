@@ -1,12 +1,8 @@
-#!name= 探花
+QX引用：
+https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/TestFlightDownload.conf
 
+Loon脚本：
+https://raw.githubusercontent.com/NobyDa/Script/master/Loon/Loon_TF_Download.conf
 
-[Script]
-http-response ^https:\/\/jiliapi\.xndplqq\.cn\/api\/member\/info script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ghs/thsp.js,requires-body=1, tag=tanhua
-
-
-[URL Rewrite]
-^http:\/\/115\.com\/\?ct=sign$ http://115.com/lx?taskdg=1 header
-
-[MITM]
-hostname = jiliapi.xndplqq.cn
+Surge模块：
+https://raw.githubusercontent.com/NobyDa/Script/master/Surge/Module/TestFlightDownload.sgmodule

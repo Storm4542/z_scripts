@@ -76,6 +76,7 @@ function GetCookie() {
 
 // 签到
 function checkIn() {
+    console.log('获取token', $.getdata(qiaohu_cookie))
     var data = JSON.stringify({
         "signPoints": 10,
         "roleType": "0"
@@ -103,7 +104,7 @@ function checkIn() {
                     $.log(err)
                 } else {
                     if (data) {
-                        console.log(data);
+                        console.log('响应体',data);
                         data = JSON.parse(data);
                         if (data.right) {
                             $.result = `🎉 签到${data.message}`;

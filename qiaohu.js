@@ -31,6 +31,7 @@ if (isGetCookie = typeof $request !== `undefined`) {
 } else {
     !(async () => {
         await checkIn()
+        await task()
         // if (!userIdArr[0]) {
         //     $.msg($.name, '【提示】请先获取捷停车 userId');
         //     return;
@@ -77,7 +78,7 @@ function GetCookie() {
 // 签到
 function checkIn() {
     const token = $.getdata(qiaohu_cookie)
-    console.log('获取token',token )
+    console.log('获取token', token)
     var data = JSON.stringify({
         "signPoints": 10, "roleType": "0"
     });
@@ -103,16 +104,17 @@ function checkIn() {
                     $.log(err)
                 } else {
                     if (data) {
-                        console.log('data');
-                        console.log(data);
+
                         data = JSON.parse(data);
-                        if (data.right) {
-                            $.result = `🎉 签到${data.message}`;
+                        if (data.code == 200) {
+                            $.result = `🎉 签到${data.msg}`;
+
                             console.log($.result);
                         } else {
-                            $.result = `❌ 重复签到`;
+                            $.result = `❌ 签到失败`;
                             console.log($.result);
                         }
+                        $.msg('巧虎签到', $.result)
                     } else {
                         $.log("服务器返回了空数据")
                     }
@@ -125,7 +127,57 @@ function checkIn() {
         })
     })
 }
+//任务
+function task(){
+    const token = $.getdata(qiaohu_cookie)
+    console.log('获取token', token)
+    var data = JSON.stringify({
+    });
+    let opt = {
+        url: `https://tv.qiaohuapp.com/api/v2.0/signInDaily/saveDaily`, headers: {
+            'Host': 'tv.qiaohuapp.com',
+            'Content-Type': 'application/json',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'code': 'xxx',
+            'Accept': '*/*',
+            'User-Agent': 'Darwin',
+            'Authorization': token,
+            'Content-Length': '32',
+            'Accept-Language': 'zh-CN,zh-Hans;q=0.9'
+        }, body: data
+    }
+    return new Promise(resolve => {
+        console.log(opt)
+        $.post(opt, (err, resp, data) => {
+            try {
+                if (err) {
+                    $.log(err)
+                } else {
+                    if (data) {
 
+                        data = JSON.parse(data);
+                        if (data.code == 200) {
+                            $.result = `🎉 任务${data.msg}`;
+
+                            console.log($.result);
+                        } else {
+                            $.result = `❌ 任务失败`;
+                            console.log($.result);
+                        }
+                        $.msg('巧虎任务', $.result)
+                    } else {
+                        $.log("服务器返回了空数据")
+                    }
+                }
+            } catch (error) {
+                $.log(error);
+            } finally {
+                resolve();
+            }
+        })
+    })
+}
 // 查询用户信息
 function getUserInfo() {
     let opt = {

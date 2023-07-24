@@ -93,7 +93,7 @@ function checkIn() {
             'Authorization': token,
             'Content-Length': '32',
             'Accept-Language': 'zh-CN,zh-Hans;q=0.9'
-        }, data: data
+        }, body: data
     }
     return new Promise(resolve => {
         // console.log(opt)

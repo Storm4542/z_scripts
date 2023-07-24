@@ -69,10 +69,11 @@ if (isGetCookie = typeof $request !== `undefined`) {
 
 function GetCookie() {
     console.log($request);
-    $.msg(JSON.stringify($request))
+    $.msg(JSON.stringify($request.headers))
     console.log($request.headers);
     if ($request && $request.headers) {
         let body = JSON.parse($request.headers);
+        $.msg(body.Authorization)
         if (body?.Authorization) {
                 cookie=body.Authorization;
                 $.setdata(cookie, qiaohu_cookie);

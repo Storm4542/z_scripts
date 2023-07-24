@@ -14,7 +14,7 @@ const $ = new Env('巧虎签到');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jtc_userId_key = 'jtc_userId';
 const qiaohu_cookie = 'qiaohu_cookie';
-let cookie - $.getdata(qiaohu_cookie) || '';
+let cookie = $.getdata(qiaohu_cookie) || '';
 let userId = $.getdata(jtc_userId_key) || '';
 let taskNo = $.getdata('jtc_taskNo') || "T71811221608";
 let userIdArr = [], message = '', msg = '';

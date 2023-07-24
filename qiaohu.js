@@ -73,9 +73,9 @@ function GetCookie() {
     console.log($request.headers);
     if ($request && $request.headers) {
         let body = JSON.parse($request.headers);
-        $.msg(body.Authorization)
-        if (body?.Authorization) {
-                cookie=body.Authorization;
+        $.msg('token是',body.authorization)
+        if (body?.authorization) {
+                cookie=body.authorization;
                 $.setdata(cookie, qiaohu_cookie);
                 console.log(`cookie: ${body.Authorization}\n`);
                 $.msg($.name, ``, `🎉 cookie 写入成功\n${hideSensitiveData(body.Authorization, 4, 4)}`);

@@ -5,7 +5,7 @@ hostname = tv.qiaohuapp.com
 
 cron "15 9 * * *" script-path=https://raw.githubusercontent.com/Storm4542/z_scripts/master/qiaohu.js, tag=巧虎签到
 
-http-request ^https://tv.qiaohuapp.com/api/* script-path=https://raw.githubusercontent.com/Storm4542/z_scripts/master/qiaohu.js, requires-body=true, timeout=10, enabled=false, tag=巧虎获取cookie
+http-request ^https?:\/\/(tv.)?(qiaohuapp)\.com  script-path=https://raw.githubusercontent.com/Storm4542/z_scripts/master/qiaohu.js, requires-body=true, timeout=10, enabled=false, tag=巧虎获取cookie
 
 
 */
@@ -71,8 +71,8 @@ function GetCookie() {
     console.log($request);
     $.msg(JSON.stringify($request))
     console.log($request.headers);
-    if ($request && $request.body) {
-        let body = JSON.parse($request.body);
+    if ($request && $request.headers) {
+        let body = JSON.parse($request.headers);
         if (body?.Authorization) {
                 cookie=body.Authorization;
                 $.setdata(cookie, qiaohu_cookie);

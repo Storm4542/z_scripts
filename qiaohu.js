@@ -96,7 +96,7 @@ function checkIn() {
         }, body: data
     }
     return new Promise(resolve => {
-        // console.log(opt)
+        console.log(opt)
         $.post(opt, (err, resp, data) => {
             try {
                 if (err) {

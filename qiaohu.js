@@ -69,6 +69,7 @@ if (isGetCookie = typeof $request !== `undefined`) {
 
 function GetCookie() {
     $.msg('请求头',JSON.stringify($request.headers))
+    $.msg('token',$request.headers.authorization)
     if ($request.headers) {
         let body = JSON.parse($request.headers);
         $.msg('token是',body.authorization)

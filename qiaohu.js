@@ -68,18 +68,10 @@ if (isGetCookie = typeof $request !== `undefined`) {
 }
 
 function GetCookie() {
-    $.msg('请求头',JSON.stringify($request.headers))
     $.msg('token',$request.headers.authorization)
-    if ($request.headers) {
-        let body = JSON.parse($request.headers);
-        $.msg('token是',body.authorization)
-        if (body?.authorization) {
-                cookie=body.authorization;
-                $.setdata(cookie, qiaohu_cookie);
-                console.log(`cookie: ${body.Authorization}\n`);
-                $.msg($.name, ``, `🎉 cookie 写入成功\n${hideSensitiveData(body.Authorization, 4, 4)}`);
-        }
-    }
+    cookie=$request.headers.authorization;
+     $.setdata(cookie, qiaohu_cookie);
+     $.msg($.name, ``, `🎉 cookie 写入成功\n${hideSensitiveData($request.headers.authorization, 4, 4)}`);
 }
 
 // 签到

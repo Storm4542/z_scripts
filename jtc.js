@@ -126,7 +126,7 @@ function checkIn() {
       "User-Agent": `JTC/6.0.4 (iPhone; iOS 16.3; Scale/3.00)`,
       "axiosSrc": "dataService"
     },
-    body: `{"userId":"${$.userId}","reqSource":"JTC_I"}`
+    body: `{"userId":"${$.userId}","reqSource":"JTC_I","taskNo":"${taskNo}"}`
   }
   return new Promise(resolve => {
     // console.log(opt)

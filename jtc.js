@@ -136,7 +136,7 @@ function checkIn() {
           $.log(err)
         } else {
           if (data) {
-            // console.log(data);
+            console.log(data);
             data = JSON.parse(data);
             if (data.right) {
               $.result = `🎉 签到${data.message}`;

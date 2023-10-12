@@ -1,15 +1,10 @@
 /*
 
-// #本地
-// ^https?://app.moutai519.com.cn/xhr/front/user/info url script-response-body http://192.168.10.5:5500/demo/Scripts/Task/iMaotai/imaotai.js
-//
-// hostname = app.moutai519.com.cn
-
 [rewrite_local]
-^https?://app.moutai519.com.cn/xhr/front/user/info url script-request-header https://raw.githubusercontent.com/wf021325/qx/master/task/iios.js
+^https?://app.moutai519.com.cn/xhr/front/user/info url script-request-header https://raw.githubusercontent.com/Storm4542/z_scripts/master/jiupinqian.js
 
 [task_local]
-1 0 * * * https://raw.githubusercontent.com/Storm4542/z_scripts/master/imaotai.js, tag=酒品签到, enabled=true
+1 0 * * * https://raw.githubusercontent.com/Storm4542/z_scripts/master/jiupinqian.js, tag=酒品签到, enabled=true
 
 [mitm]
 hostname = app.moutai519.com.cn
